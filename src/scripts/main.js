@@ -47,6 +47,8 @@ getPhones(LIST_URL)
     });
 
     document.body.append(listOfPhoneName);
+
+    return phones;
   })
   .then(result => {
     return getPhonesDetails(result);
