@@ -35,6 +35,8 @@ function getPhonesDetails(ids) {
   return Promise.all(phonesDetails);
 }
 
+const phonesIds = [];
+
 getPhones(LIST_URL)
   .then(phones => {
     const listOfPhoneName = document.createElement('ul');
@@ -44,11 +46,13 @@ getPhones(LIST_URL)
 
       itemOfPhoneName.textContent = phone.name;
       listOfPhoneName.append(itemOfPhoneName);
+
+      phonesIds.push(phone.id);
     });
 
     document.body.append(listOfPhoneName);
 
-    return phones;
+    return phonesIds;
   })
   .then(result => {
     return getPhonesDetails(result);
