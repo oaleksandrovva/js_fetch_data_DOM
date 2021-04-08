@@ -53,6 +53,4 @@ function displayPhones(listOfPhones) {
 getPhones(LIST_URL)
   .then(displayPhones)
   .then(phones => phones.map(phone => phone.id))
-  .then(result => {
-    return getPhonesDetails(result);
-  });
+  .then(getPhonesDetails);
