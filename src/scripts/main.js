@@ -35,25 +35,24 @@ function getPhonesDetails(ids) {
   return Promise.all(phonesDetails);
 }
 
-const phonesIds = [];
+function displayPhones(listOfPhones) {
+  const listOfPhoneName = document.createElement('ul');
+
+  listOfPhones.forEach(phone => {
+    const itemOfPhoneName = document.createElement('li');
+
+    itemOfPhoneName.textContent = phone.name;
+    listOfPhoneName.append(itemOfPhoneName);
+  });
+
+  document.body.append(listOfPhoneName);
+
+  return listOfPhones;
+}
 
 getPhones(LIST_URL)
-  .then(phones => {
-    const listOfPhoneName = document.createElement('ul');
-
-    phones.forEach(phone => {
-      const itemOfPhoneName = document.createElement('li');
-
-      itemOfPhoneName.textContent = phone.name;
-      listOfPhoneName.append(itemOfPhoneName);
-
-      phonesIds.push(phone.id);
-    });
-
-    document.body.append(listOfPhoneName);
-
-    return phonesIds;
-  })
+  .then(displayPhones)
+  .then(phones => phones.map(phone => phone.id))
   .then(result => {
     return getPhonesDetails(result);
   });
