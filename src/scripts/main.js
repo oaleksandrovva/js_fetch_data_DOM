@@ -35,19 +35,19 @@ function getPhonesDetails(ids) {
   return Promise.all(phonesDetails);
 }
 
-function displayPhones(listOfPhones) {
-  const listOfPhoneName = document.createElement('ul');
+function displayPhones(phones) {
+  const phonesList = document.createElement('ul');
 
-  listOfPhones.forEach(phone => {
+  phones.forEach(phone => {
     const itemOfPhoneName = document.createElement('li');
 
     itemOfPhoneName.textContent = phone.name;
-    listOfPhoneName.append(itemOfPhoneName);
+    phonesList.append(itemOfPhoneName);
   });
 
-  document.body.append(listOfPhoneName);
+  document.body.append(phonesList);
 
-  return listOfPhones;
+  return phones;
 }
 
 getPhones(LIST_URL)
